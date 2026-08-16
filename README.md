@@ -1,4 +1,11 @@
-# 融合玩法立项机会研究（slg-fusion-research）
+# 游戏市场前景调研流水线
+
+![Type](https://img.shields.io/badge/Type-Interview%20Portfolio-9cf)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python&logoColor=white)
+![Data](https://img.shields.io/badge/Data-Sensor%20Tower%20API-green)
+![Privacy](https://img.shields.io/badge/Data-No%E7%A4%BA%E4%BE%8B%E5%86%92%E5%85%85-red)
+
+> 一个**数据驱动**的 SLG 融合玩法立项调研流水线：从真实市场数据出发，自动完成「采集 → 五维打分 → 立项方案卡 → 可交互报告」，杜绝示例数据冒充结论。
 
 给定「一个核心玩法 + 若干融合玩法候选」，自动完成：
 
@@ -7,6 +14,14 @@
 - 想用真实数据：填你自己的 Sensor Tower token（脚本自动读取，不依赖任何外部账号）。
 - 想让 AI 写方案卡：**优先用 WorkBuddy 自带 AI**（不花外部 API、不走外部模型）；也可以填一个兼容 OpenAI 的模型 key 走自动生成。
 - 没有 AI key 也能跑：用 `--dry` 占位方案卡验证流水线；但**核心市场数据必须有 Sensor Tower token**（无 token 不生成报告，杜绝示例/占位数据冒充真实结论）。
+
+---
+
+## 🌟 作品集亮点（面试用）
+
+- **真实数据优先**：核心打分永远来自 Sensor Tower 实测，AI 只写文字、改不了分数，不会出现「AI 编数据」污染结论。
+- **可复现的调研流水线**：采集 → 五维打分（吸量 / 空间 / 竞争 / 留存 / 付费）+ ROI 排序 → 方案卡 → 可交互 HTML 报告，一条命令跑通。
+- **工程化落地**：支持 WorkBuddy AI 手桥与外部 LLM 两种方案卡生成路径，兼顾零成本与自动化。
 
 ---
 
