@@ -1,0 +1,275 @@
+# ============================================================
+# 融合玩法库 —— 可嫁接到任意核心玩法的「机制大全」
+#
+# 这是需求①「方案方向尽量多」的基石：一份机制清单，自动 × 核心玩法
+# 生成所有候选方向。每个条目只描述「机制本身」，不绑定具体核心玩法。
+#
+# 字段说明：
+#   id                机制唯一 id（展开后作为 fusion id）
+#   name              中文机制名
+#   category_id       Sensor Tower 品类 id（决定「空间」维度天花板）
+#   st_subgenre       ST 子品类名（用于展示 + 搜索兜底）
+#   fusion_role      与核心玩法融合时的默认角色（副玩法/外壳/养成层/核心替换）
+#   benchmark_keywords 用于 ST 搜索「该机制的真实标杆游戏」的关键词（中英文都给）
+#   exemplars         搜索时作为种子的真实游戏名（提高搜索命中率；可留空）
+#
+# ST 品类 id 速查：Action=7001 / Adventure=7002 / Card=7005 /
+#                  Puzzle=7012 / Role Playing=7014 / Simulation=7015 / Strategy=7017
+# ============================================================
+
+library:
+  - id: match3
+    name: 三消
+    category_id: 7012
+    st_subgenre: Match 3
+    fusion_role: 副玩法
+    benchmark_keywords: ["三消", "match 3", "match three"]
+    exemplars: ["Candy Crush Saga", "Homescapes", "Gardenscapes"]
+
+  - id: merge
+    name: 二合
+    category_id: 7012
+    st_subgenre: Merge
+    fusion_role: 副玩法
+    benchmark_keywords: ["二合", "merge game", "merge"]
+    exemplars: ["Merge Mansion", "Travel Town", "Merge Dragons"]
+
+  - id: minigame
+    name: 闯关小游戏
+    category_id: 7012
+    st_subgenre: Puzzle
+    fusion_role: 副玩法
+    benchmark_keywords: ["闯关小游戏", "hyper casual puzzle", "brain puzzle game"]
+    exemplars: ["Brain Test", "Wood Nuts", "Satisfying Puzzle"]
+
+  - id: puzzle
+    name: 解谜
+    category_id: 7012
+    st_subgenre: Puzzle
+    fusion_role: 副玩法
+    benchmark_keywords: ["解谜", "puzzle game", "brain teaser"]
+    exemplars: ["Brain Out", "The Room", "Monument Valley"]
+
+  - id: simulation
+    name: 模拟经营
+    category_id: 7015
+    st_subgenre: Simulation
+    fusion_role: 外壳
+    benchmark_keywords: ["模拟经营", "tycoon game", "simulation"]
+    exemplars: ["SimCity BuildIt", "Township", "Cooking Fever"]
+
+  - id: idle
+    name: 放置挂机
+    category_id: 7015
+    st_subgenre: Idle
+    fusion_role: 外壳
+    benchmark_keywords: ["放置", "idle game", "incremental"]
+    exemplars: ["Idle Miner Tycoon", "AdVenture Capitalist", "Cell to Singularity"]
+
+  - id: card
+    name: 卡牌
+    category_id: 7005
+    st_subgenre: Card
+    fusion_role: 养成层
+    benchmark_keywords: ["卡牌", "card game", "card battle"]
+    exemplars: ["Hearthstone", "Marvel Snap", "Slay the Spire"]
+
+  - id: herorpg
+    name: 卡牌英雄养成
+    category_id: 7014
+    st_subgenre: RPG
+    fusion_role: 养成层
+    benchmark_keywords: ["英雄养成", "hero collector rpg", "afk rpg"]
+    exemplars: ["AFK Arena", "Raid Shadow Legends", "Top Heroes"]
+
+  - id: towerdefense
+    name: 塔防
+    category_id: 7017
+    st_subgenre: Tower Defense
+    fusion_role: 副玩法
+    benchmark_keywords: ["塔防", "tower defense", "td game"]
+    exemplars: ["Kingdom Rush", "Bloons TD", "Arknights"]
+
+  - id: palworld
+    name: 帕鲁like 捉宠共生
+    category_id: 7002
+    st_subgenre: Adventure
+    fusion_role: 养成层
+    benchmark_keywords: ["捉宠", "monster catch", "palworld like"]
+    exemplars: ["Pokemon GO", "Palworld", "ARK"]
+
+  - id: roguelike
+    name: Roguelike
+    category_id: 7001
+    st_subgenre: Roguelike
+    fusion_role: 副玩法
+    benchmark_keywords: ["肉鸽", "roguelike", "rogue like"]
+    exemplars: ["Dead Cells", "Binding of Isaac", "Hades"]
+
+  - id: survivorlike
+    name: 割草生存
+    category_id: 7001
+    st_subgenre: Action
+    fusion_role: 副玩法
+    benchmark_keywords: ["割草", "survivor io", "bullet survivor"]
+    exemplars: ["Survivor.io", "Vampire Survivors", "Total Battle"]
+
+  - id: autochess
+    name: 自走棋
+    category_id: 7017
+    st_subgenre: Strategy
+    fusion_role: 副玩法
+    benchmark_keywords: ["自走棋", "auto chess", "auto battler"]
+    exemplars: ["TFT", "Auto Chess", "Super Auto Pets"]
+
+  - id: rhythm
+    name: 音游
+    category_id: 7001
+    st_subgenre: Music
+    fusion_role: 副玩法
+    benchmark_keywords: ["音游", "rhythm game", "music game"]
+    exemplars: ["Beatstar", "Muse Dash", "Piano Tiles"]
+
+  - id: runner
+    name: 跑酷
+    category_id: 7001
+    st_subgenre: Action
+    fusion_role: 副玩法
+    benchmark_keywords: ["跑酷", "endless runner", "running game"]
+    exemplars: ["Subway Surfers", "Temple Run", "Alto's Odyssey"]
+
+  - id: openworld
+    name: 开放世界
+    category_id: 7002
+    st_subgenre: Adventure
+    fusion_role: 核心替换
+    benchmark_keywords: ["开放世界", "open world", "open world rpg"]
+    exemplars: ["Genshin Impact", "Fortnite", "Zenless Zone Zero"]
+
+  - id: ugcbuilder
+    name: UGC 建造
+    category_id: 7015
+    st_subgenre: Simulation
+    fusion_role: 外壳
+    benchmark_keywords: ["UGC 建造", "sandbox builder", "user generated"]
+    exemplars: ["Roblox", "Minecraft", "The Sandbox"]
+
+  - id: bullethell
+    name: 弹幕射击
+    category_id: 7001
+    st_subgenre: Action
+    fusion_role: 副玩法
+    benchmark_keywords: ["弹幕", "bullet hell", "danmaku"]
+    exemplars: ["Geometry Wars", "Bullet Hell", "Bang Dream"]
+
+  - id: srpg
+    name: 战棋
+    category_id: 7017
+    st_subgenre: Strategy
+    fusion_role: 副玩法
+    benchmark_keywords: ["战棋", "srpg", "tactics rpg"]
+    exemplars: ["Fire Emblem", "Into the Breach", "Wargroove"]
+
+  - id: board
+    name: 桌游/Board
+    category_id: 7005
+    st_subgenre: Card
+    fusion_role: 外壳
+    benchmark_keywords: ["桌游", "board game", "tabletop"]
+    exemplars: ["Monopoly Go", "Catan", "UNO"]
+
+  - id: moba
+    name: MOBA
+    category_id: 7001
+    st_subgenre: Action
+    fusion_role: 核心替换
+    benchmark_keywords: ["MOBA", "moba game", "multiplayer online battle"]
+    exemplars: ["Wild Rift", "Mobile Legends", "Honor of Kings"]
+
+  - id: battleroyale
+    name: 大逃杀
+    category_id: 7001
+    st_subgenre: Action
+    fusion_role: 核心替换
+    benchmark_keywords: ["大逃杀", "battle royale", "br game"]
+    exemplars: ["PUBG Mobile", "Free Fire", "Fortnite"]
+
+  - id: fighting
+    name: 格斗
+    category_id: 7001
+    st_subgenre: Action
+    fusion_role: 副玩法
+    benchmark_keywords: ["格斗", "fighting game", "fighting"]
+    exemplars: ["Mortal Kombat", "Brawlhalla", "Street Fighter"]
+
+  - id: racing
+    name: 竞速
+    category_id: 7001
+    st_subgenre: Action
+    fusion_role: 副玩法
+    benchmark_keywords: ["竞速", "racing game", "car racing"]
+    exemplars: ["Asphalt", "Real Racing", "Mario Kart"]
+
+  - id: horror
+    name: 恐怖生存
+    category_id: 7002
+    st_subgenre: Adventure
+    fusion_role: 外壳
+    benchmark_keywords: ["恐怖", "horror game", "survival horror"]
+    exemplars: ["Dead by Daylight", "Granny", "Eyes"]
+
+  - id: visualnovel
+    name: 文字冒险
+    category_id: 7002
+    st_subgenre: Adventure
+    fusion_role: 外壳
+    benchmark_keywords: ["文字冒险", "visual novel", "otome"]
+    exemplars: ["Mystic Messenger", "Doki Doki", "Fate"]
+
+  - id: lifesim
+    name: 生活模拟
+    category_id: 7015
+    st_subgenre: Simulation
+    fusion_role: 外壳
+    benchmark_keywords: ["生活模拟", "life sim", "dating sim"]
+    exemplars: ["Sims Mobile", "Stardew Valley", "Animal Crossing"]
+
+  - id: sandbox
+    name: 沙盒
+    category_id: 7015
+    st_subgenre: Simulation
+    fusion_role: 外壳
+    benchmark_keywords: ["沙盒", "sandbox game", "open sandbox"]
+    exemplars: ["Minecraft", "Terraria", "Garry's Mod"]
+
+  - id: mergerpg
+    name: 合成 RPG
+    category_id: 7014
+    st_subgenre: RPG
+    fusion_role: 养成层
+    benchmark_keywords: ["合成 RPG", "merge rpg", "merge heroes"]
+    exemplars: ["Swordsman RPG", "Merge Heroes", "Merge Masters"]
+
+  - id: towerrogue
+    name: 塔防肉鸽
+    category_id: 7017
+    st_subgenre: Tower Defense
+    fusion_role: 副玩法
+    benchmark_keywords: ["塔防肉鸽", "td roguelike", "random tower defense"]
+    exemplars: ["Random TD", "Gem TD", "Archero"]
+
+  - id: party
+    name: 派对游戏
+    category_id: 7001
+    st_subgenre: Action
+    fusion_role: 外壳
+    benchmark_keywords: ["派对游戏", "party game", "social game"]
+    exemplars: ["Among Us", "Fall Guys", "Jackbox"]
+
+  - id: jrpg
+    name: 日式 RPG
+    category_id: 7014
+    st_subgenre: RPG
+    fusion_role: 核心替换
+    benchmark_keywords: ["JRPG", "jrpg", "turn based rpg"]
+    exemplars: ["Dragon Quest", "Final Fantasy", "Octopath"]

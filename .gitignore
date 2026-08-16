@@ -1,0 +1,10 @@
+# 真实配置（含 Sensor Tower / LLM 密钥，绝不入库）
+config.user.vbs
+
+# 缓存与构建产物
+data/
+__pycache__/
+*.pyc
+.trae/
+~$*.xlsx
+.DS_Store

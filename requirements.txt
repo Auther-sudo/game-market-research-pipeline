@@ -1,0 +1,13 @@
+# 游戏立项机会报告 - Python 依赖清单
+# 安装方式（在能用的 Python 下执行）：
+#     python -m pip install -r requirements.txt
+# 作用：一次性装好程序运行所需的所有第三方库，无需逐个记包名。
+
+# YAML 配置解析（读 configs/*.yaml）
+PyYAML>=6.0
+
+# 报告模板渲染（templates/report.html.j2）
+Jinja2>=3.1
+
+# HTTP 请求（Sensor Tower API、大模型 /chat/completions）
+requests>=2.31

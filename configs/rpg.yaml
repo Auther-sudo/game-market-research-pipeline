@@ -1,0 +1,181 @@
+# ============================================================
+# RPG 玩法融合立项机会研究 —— 配置文件
+#
+# 这是同一套流水线的第二个研究对象，用来证明「换核心玩法只改配置」：
+#   与 slg.yaml 相比，只有 meta + fusions + st.games_category_id 三段不同，
+#   src/ 下的代码、模板、评分公式完全复用，无需任何改动。
+# ============================================================
+
+meta:
+  core_genre: RPG
+  core_genre_desc: 角色扮演，以二次元 gacha / 开放世界 / 卡牌养成为主战场
+  report_title: 【RPG】玩法融合立项机会全景研究
+  author: 战略 x AI
+
+st:
+  games_category_id: 7014  # RPG → Role Playing(7014)
+
+  markets:
+    CN: [CN]
+    GL: [US, JP, KR, DE, GB]
+
+  date_from: '2025-07-01'
+  date_to: '2026-06-30'
+
+  core_filter:
+    field: Game Sub-genre
+    values: [RPG, JRPG, Gacha]
+
+# 核心玩法基本盘。数值填 ST 实测，留空则显示待填
+core_market:
+  kpis:
+    - value: 待填
+      label: RPG 全球年收入（ST games_breakdown）
+    - value: 待填
+      label: 同比增速
+    - value: 待填
+      label: 头部产品 RPD 区间
+  notes: >
+    这一节用于交代 RPG 自身的市场体量与结构，是所有融合方向的分母。
+    RPG 内部结构极碎（gacha / 卡牌 / 战棋 / 开放世界），建议先按子品类分别取市场总量，
+    再加权汇总，不要用单一 Top-N 榜单加总代替。
+
+# ============================================================
+# 融合候选清单
+#   fusion_role : 副玩法 / 外壳 / 核心替换 / 养成层
+#   st_subgenre : 该玩法在 ST 里的子品类名
+#   seeds       : 已上线的「RPG × 该玩法」代表产品（种子产品法入口）
+#   hypothesis  : 立项假设，会喂给叙事层
+#   risk_base   : 配置层基础风险（%）
+# ============================================================
+fusions:
+
+  - id: idle
+    name: 放置挂机
+    fusion_role: 外壳
+    st_subgenre: Idle
+    category_id: 7015
+    seeds:
+      - name: 'AFK Journey'
+      - name: 剑与远征
+    hypothesis: 离线挂机收益天然承接 RPG 的长线养成，把每日在线压力转为被动成长，扩大轻度受众。
+    risk_base: 0
+
+  - id: towerdefense
+    name: 塔防
+    fusion_role: 外壳
+    st_subgenre: Tower Defense
+    category_id: 7017
+    seeds:
+      - name: 明日方舟
+      - name: 明日方舟：终末地
+    hypothesis: 塔防关卡作为 RPG 战斗的具象出口，把抽象数值对抗变成可操作的策略空间。
+    risk_base: 0
+
+  - id: roguelike
+    name: 肉鸽
+    fusion_role: 副玩法
+    st_subgenre: Roguelike
+    category_id: 7001
+    seeds:
+      - name: 元气骑士
+      - name: 最强蜗牛
+    hypothesis: 随机构筑肉鸽作为赛季内重复消费内容，解决 RPG 中后期日常同质化与付费疲劳。
+    risk_base: 0
+
+  - id: openworld
+    name: 开放世界
+    fusion_role: 外壳
+    st_subgenre: RPG
+    category_id: 7014
+    seeds:
+      - name: 原神
+      - name: 鸣潮
+    hypothesis: 开放世界替换传统副本流转，用探索与叙事密度抬升留存与时长，但研发成本极高。
+    risk_base: 3
+
+  - id: gacha
+    name: 卡牌 gacha 养成
+    fusion_role: 养成层
+    st_subgenre: Card
+    category_id: 7005
+    seeds:
+      - name: 崩坏：星穹铁道
+      - name: 绝区零
+    hypothesis: 卡池作为付费深度层，与 RPG 角色养成并行，承载核心 ARPU 与长线 LTV。
+    risk_base: 0
+
+  - id: simulation
+    name: 模拟经营
+    fusion_role: 外壳
+    st_subgenre: Simulation
+    category_id: 7015
+    seeds:
+      - name: 桃源深处有人家
+      - name: 摩尔庄园
+    hypothesis: 家园/小镇经营作为情感养成外壳，把 RPG 的数值进度包装成有温度的日常。
+    risk_base: 0
+
+  - id: tactics
+    name: 战棋
+    fusion_role: 副玩法
+    st_subgenre: Strategy
+    category_id: 7017
+    seeds:
+      - name: 梦幻模拟战
+      - name: 天地劫
+    hypothesis: 格子战棋作为战斗系统的策略化表达，承接硬核策略用户，抬升战斗深度口碑。
+    risk_base: 0
+
+  - id: match3
+    name: 三消
+    fusion_role: 副玩法
+    st_subgenre: Match 3
+    category_id: 7012
+    seeds: []
+    hypothesis: 三消作为泛用户副玩法入口，用低门槛消除承接买量素材，再向 RPG 主线导流。
+    risk_base: 6
+
+  - id: survival
+    name: 生存建造
+    fusion_role: 外壳
+    st_subgenre: Survival
+    category_id: 7002
+    seeds: []
+    hypothesis: 生存建造替换为 RPG 的据点循环，用蓝图/采集/防御填满中长期内容空窗。
+    risk_base: 8
+
+  - id: palworld
+    name: 帕鲁like 捉宠共生
+    fusion_role: 养成层
+    st_subgenre: Adventure
+    category_id: 7002
+    seeds: []
+    hypothesis: 可捕获生物同时充当战斗单位与生产力，为 RPG 提供收集养成与情感陪伴双线。
+    risk_base: 10
+
+# ============================================================
+# 评分锚点。默认在 scorecard.py，这里只覆盖 RPG 更看重的付费强度
+# ============================================================
+scoring:
+  payment:
+    metric: seed_rpd
+    anchors: [[0.5, 2], [3.0, 4], [8.0, 6], [20.0, 8], [50.0, 10]]
+
+risk:
+  no_seed_penalty: 12
+  low_overlap_threshold: 0.25
+  low_overlap_penalty: 10
+  max_risk: 30
+
+priority:
+  P1: 7.5
+  P2: 6.0
+  P3: 4.0
+
+sources:
+  - <b>市场与产品数据</b>：Sensor Tower（games_breakdown 品类大盘 + unified sales_report_estimates 单品实测）
+  - <b>留存（D7）</b>：Sensor Tower 暂无公开 API 直拉；缺失时在报告中显示「无相关数据」，不参与评分
+  - <b>受众重叠</b>：Sensor Tower 跨应用使用数据（需对应模块权限）；缺失时显示「无相关数据」
+  - <b>种子产品清单</b>：人工圈定 + 复核，是本方法论的关键人工环节
+  - <b>ROI 计算</b>：立项线索评估 v3.1.4 公式，由 src/scorecard.py 脚本执行

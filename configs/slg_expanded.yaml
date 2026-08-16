@@ -1,0 +1,526 @@
+meta:
+  core_genre: SLG
+  core_genre_desc: 策略战争，以 COK-like / 4X 为主战场
+  report_title: 【SLG】玩法融合立项机会全景研究
+  author: 战略 x AI
+st:
+  markets:
+    CN:
+    - CN
+    GL:
+    - US
+    - JP
+    - KR
+    - DE
+    - GB
+  date_from: '2025-07-01'
+  date_to: '2026-06-30'
+  games_category_id: 7017
+  core_filter:
+    field: Game Sub-genre
+    values:
+    - 4X Strategy
+    - Build & Battle
+core_market:
+  kpis:
+  - value: 待填
+    label: SLG 全球年收入（ST games_breakdown）
+  - value: 待填
+    label: 同比增速
+  - value: 待填
+    label: 头部产品 RPD 区间
+  notes: '这一节用于交代核心玩法自身的市场体量与结构，是所有融合方向的分母。 建议用 ST 的 games_breakdown 端点按 4X Strategy
+    / Build & Battle 子品类取市场总量， 不要用 Top-N 榜单加总代替。
+
+    '
+fusions:
+- id: minigame
+  name: 闯关小游戏
+  fusion_role: 副玩法
+  st_subgenre: Puzzle
+  category_id: 7012
+  seeds:
+  - name: 'Last War: Survival'
+  - name: Kingshot
+  hypothesis: 用超休闲闯关关卡做买量素材与新手前置，把 SLG 的高门槛认知成本压到最低。
+  risk_base: 0
+  benchmark_keywords:
+  - 闯关小游戏
+  - hyper casual puzzle
+  - brain puzzle game
+- id: merge
+  name: 二合
+  fusion_role: 副玩法
+  st_subgenre: Merge
+  category_id: 7012
+  seeds:
+  - name: 'Top War: Battle Game'
+  - name: 'Last War: Survival'
+  hypothesis: 合并作为部队/道具的成长表达，把 SLG 的数值养成可视化成可拖拽的即时反馈。
+  risk_base: 0
+  benchmark_keywords:
+  - 二合
+  - merge game
+  - merge
+- id: match3
+  name: 三消
+  fusion_role: 副玩法
+  st_subgenre: Match 3
+  category_id: 7012
+  seeds:
+  - name: Puzzles & Survival
+  - name: Age of Origins
+  hypothesis: 三消作为独立副玩法承接泛用户，主线仍是 SLG，两套循环用资源产出打通。
+  risk_base: 0
+  benchmark_keywords:
+  - 三消
+  - match 3
+  - match three
+- id: simulation
+  name: 模拟经营
+  fusion_role: 外壳
+  st_subgenre: Simulation
+  category_id: 7015
+  seeds:
+  - name: Whiteout Survival
+  hypothesis: 用基建/家园经营替换传统领地建造，把 SLG 前中期的空窗期填成有情感的养成。
+  risk_base: 0
+  benchmark_keywords:
+  - 模拟经营
+  - tycoon game
+  - simulation
+- id: herorpg
+  name: 卡牌英雄养成
+  fusion_role: 养成层
+  st_subgenre: RPG
+  category_id: 7014
+  seeds:
+  - name: Rise of Kingdoms
+  - name: Top Heroes
+  hypothesis: 英雄卡池作为付费深度层，与 SLG 的部队体系并行，解决纯数值付费天花板。
+  risk_base: 0
+  benchmark_keywords:
+  - 英雄养成
+  - hero collector rpg
+  - afk rpg
+- id: towerdefense
+  name: 塔防
+  fusion_role: 副玩法
+  st_subgenre: Tower Defense
+  category_id: 7017
+  seeds: []
+  hypothesis: 塔防作为守城战的具象化表达，把 SLG 里抽象的防守数值变成可操作的关卡。
+  risk_base: 5
+  benchmark_keywords:
+  - 塔防
+  - tower defense
+  - td game
+- id: palworld
+  name: 帕鲁like 捉宠共生
+  fusion_role: 养成层
+  st_subgenre: Adventure
+  category_id: 7002
+  seeds: []
+  hypothesis: 可捕获生物同时充当战斗单位与生产力，为 SLG 提供收集养成与情感陪伴双线。
+  risk_base: 10
+  benchmark_keywords:
+  - 捉宠
+  - monster catch
+  - palworld like
+- id: idle
+  name: 放置挂机
+  fusion_role: 外壳
+  st_subgenre: Idle
+  category_id: 7015
+  seeds:
+  - name: Top Heroes
+  hypothesis: 离线收益天然匹配 SLG 的长周期节奏，降低在线时长压力、扩大轻度受众。
+  risk_base: 0
+  benchmark_keywords:
+  - 放置
+  - idle game
+  - incremental
+- id: roguelike
+  name: Roguelike
+  fusion_role: 副玩法
+  st_subgenre: Roguelike
+  category_id: 7001
+  seeds: []
+  hypothesis: 随机构筑关卡作为赛季内的重复消费内容，解决 SLG 中后期日常同质化。
+  risk_base: 8
+  benchmark_keywords:
+  - 肉鸽
+  - roguelike
+  - rogue like
+- id: survivorlike
+  name: 割草生存
+  fusion_role: 副玩法
+  st_subgenre: Action
+  category_id: 7001
+  seeds: []
+  hypothesis: 割草作为高转化买量素材与碎片化战斗出口，承接 SLG 素材疲劳后的新钩子。
+  risk_base: 5
+  benchmark_keywords:
+  - 割草
+  - survivor io
+  - bullet survivor
+- id: puzzle
+  name: 解谜
+  fusion_role: 副玩法
+  st_subgenre: Puzzle
+  category_id: 7012
+  benchmark_keywords:
+  - 解谜
+  - puzzle game
+  - brain teaser
+  seeds:
+  - name: Brain Out
+  - name: The Room
+  - name: Monument Valley
+  hypothesis: ''
+  risk_base: 0
+- id: card
+  name: 卡牌
+  fusion_role: 养成层
+  st_subgenre: Card
+  category_id: 7005
+  benchmark_keywords:
+  - 卡牌
+  - card game
+  - card battle
+  seeds:
+  - name: Hearthstone
+  - name: Marvel Snap
+  - name: Slay the Spire
+  hypothesis: ''
+  risk_base: 0
+- id: autochess
+  name: 自走棋
+  fusion_role: 副玩法
+  st_subgenre: Strategy
+  category_id: 7017
+  benchmark_keywords:
+  - 自走棋
+  - auto chess
+  - auto battler
+  seeds:
+  - name: TFT
+  - name: Auto Chess
+  - name: Super Auto Pets
+  hypothesis: ''
+  risk_base: 0
+- id: rhythm
+  name: 音游
+  fusion_role: 副玩法
+  st_subgenre: Music
+  category_id: 7001
+  benchmark_keywords:
+  - 音游
+  - rhythm game
+  - music game
+  seeds:
+  - name: Beatstar
+  - name: Muse Dash
+  - name: Piano Tiles
+  hypothesis: ''
+  risk_base: 0
+- id: runner
+  name: 跑酷
+  fusion_role: 副玩法
+  st_subgenre: Action
+  category_id: 7001
+  benchmark_keywords:
+  - 跑酷
+  - endless runner
+  - running game
+  seeds:
+  - name: Subway Surfers
+  - name: Temple Run
+  - name: Alto's Odyssey
+  hypothesis: ''
+  risk_base: 0
+- id: openworld
+  name: 开放世界
+  fusion_role: 核心替换
+  st_subgenre: Adventure
+  category_id: 7002
+  benchmark_keywords:
+  - 开放世界
+  - open world
+  - open world rpg
+  seeds:
+  - name: Genshin Impact
+  - name: Fortnite
+  - name: Zenless Zone Zero
+  hypothesis: ''
+  risk_base: 0
+- id: ugcbuilder
+  name: UGC 建造
+  fusion_role: 外壳
+  st_subgenre: Simulation
+  category_id: 7015
+  benchmark_keywords:
+  - UGC 建造
+  - sandbox builder
+  - user generated
+  seeds:
+  - name: Roblox
+  - name: Minecraft
+  - name: The Sandbox
+  hypothesis: ''
+  risk_base: 0
+- id: bullethell
+  name: 弹幕射击
+  fusion_role: 副玩法
+  st_subgenre: Action
+  category_id: 7001
+  benchmark_keywords:
+  - 弹幕
+  - bullet hell
+  - danmaku
+  seeds:
+  - name: Geometry Wars
+  - name: Bullet Hell
+  - name: Bang Dream
+  hypothesis: ''
+  risk_base: 0
+- id: srpg
+  name: 战棋
+  fusion_role: 副玩法
+  st_subgenre: Strategy
+  category_id: 7017
+  benchmark_keywords:
+  - 战棋
+  - srpg
+  - tactics rpg
+  seeds:
+  - name: Fire Emblem
+  - name: Into the Breach
+  - name: Wargroove
+  hypothesis: ''
+  risk_base: 0
+- id: board
+  name: 桌游/Board
+  fusion_role: 外壳
+  st_subgenre: Card
+  category_id: 7005
+  benchmark_keywords:
+  - 桌游
+  - board game
+  - tabletop
+  seeds:
+  - name: Monopoly Go
+  - name: Catan
+  - name: UNO
+  hypothesis: ''
+  risk_base: 0
+- id: moba
+  name: MOBA
+  fusion_role: 核心替换
+  st_subgenre: Action
+  category_id: 7001
+  benchmark_keywords:
+  - MOBA
+  - moba game
+  - multiplayer online battle
+  seeds:
+  - name: Wild Rift
+  - name: Mobile Legends
+  - name: Honor of Kings
+  hypothesis: ''
+  risk_base: 0
+- id: battleroyale
+  name: 大逃杀
+  fusion_role: 核心替换
+  st_subgenre: Action
+  category_id: 7001
+  benchmark_keywords:
+  - 大逃杀
+  - battle royale
+  - br game
+  seeds:
+  - name: PUBG Mobile
+  - name: Free Fire
+  - name: Fortnite
+  hypothesis: ''
+  risk_base: 0
+- id: fighting
+  name: 格斗
+  fusion_role: 副玩法
+  st_subgenre: Action
+  category_id: 7001
+  benchmark_keywords:
+  - 格斗
+  - fighting game
+  - fighting
+  seeds:
+  - name: Mortal Kombat
+  - name: Brawlhalla
+  - name: Street Fighter
+  hypothesis: ''
+  risk_base: 0
+- id: racing
+  name: 竞速
+  fusion_role: 副玩法
+  st_subgenre: Action
+  category_id: 7001
+  benchmark_keywords:
+  - 竞速
+  - racing game
+  - car racing
+  seeds:
+  - name: Asphalt
+  - name: Real Racing
+  - name: Mario Kart
+  hypothesis: ''
+  risk_base: 0
+- id: horror
+  name: 恐怖生存
+  fusion_role: 外壳
+  st_subgenre: Adventure
+  category_id: 7002
+  benchmark_keywords:
+  - 恐怖
+  - horror game
+  - survival horror
+  seeds:
+  - name: Dead by Daylight
+  - name: Granny
+  - name: Eyes
+  hypothesis: ''
+  risk_base: 0
+- id: visualnovel
+  name: 文字冒险
+  fusion_role: 外壳
+  st_subgenre: Adventure
+  category_id: 7002
+  benchmark_keywords:
+  - 文字冒险
+  - visual novel
+  - otome
+  seeds:
+  - name: Mystic Messenger
+  - name: Doki Doki
+  - name: Fate
+  hypothesis: ''
+  risk_base: 0
+- id: lifesim
+  name: 生活模拟
+  fusion_role: 外壳
+  st_subgenre: Simulation
+  category_id: 7015
+  benchmark_keywords:
+  - 生活模拟
+  - life sim
+  - dating sim
+  seeds:
+  - name: Sims Mobile
+  - name: Stardew Valley
+  - name: Animal Crossing
+  hypothesis: ''
+  risk_base: 0
+- id: sandbox
+  name: 沙盒
+  fusion_role: 外壳
+  st_subgenre: Simulation
+  category_id: 7015
+  benchmark_keywords:
+  - 沙盒
+  - sandbox game
+  - open sandbox
+  seeds:
+  - name: Minecraft
+  - name: Terraria
+  - name: Garry's Mod
+  hypothesis: ''
+  risk_base: 0
+- id: mergerpg
+  name: 合成 RPG
+  fusion_role: 养成层
+  st_subgenre: RPG
+  category_id: 7014
+  benchmark_keywords:
+  - 合成 RPG
+  - merge rpg
+  - merge heroes
+  seeds:
+  - name: Swordsman RPG
+  - name: Merge Heroes
+  - name: Merge Masters
+  hypothesis: ''
+  risk_base: 0
+- id: towerrogue
+  name: 塔防肉鸽
+  fusion_role: 副玩法
+  st_subgenre: Tower Defense
+  category_id: 7017
+  benchmark_keywords:
+  - 塔防肉鸽
+  - td roguelike
+  - random tower defense
+  seeds:
+  - name: Random TD
+  - name: Gem TD
+  - name: Archero
+  hypothesis: ''
+  risk_base: 0
+- id: party
+  name: 派对游戏
+  fusion_role: 外壳
+  st_subgenre: Action
+  category_id: 7001
+  benchmark_keywords:
+  - 派对游戏
+  - party game
+  - social game
+  seeds:
+  - name: Among Us
+  - name: Fall Guys
+  - name: Jackbox
+  hypothesis: ''
+  risk_base: 0
+- id: jrpg
+  name: 日式 RPG
+  fusion_role: 核心替换
+  st_subgenre: RPG
+  category_id: 7014
+  benchmark_keywords:
+  - JRPG
+  - jrpg
+  - turn based rpg
+  seeds:
+  - name: Dragon Quest
+  - name: Final Fantasy
+  - name: Octopath
+  hypothesis: ''
+  risk_base: 0
+scoring:
+  payment:
+    metric: seed_rpd
+    anchors:
+    - - 0.5
+      - 2
+    - - 2.0
+      - 4
+    - - 6.0
+      - 6
+    - - 15.0
+      - 8
+    - - 40.0
+      - 10
+risk:
+  no_seed_penalty: 12
+  low_overlap_threshold: 0.25
+  low_overlap_penalty: 10
+  max_risk: 30
+priority:
+  P1: 7.5
+  P2: 6.0
+  P3: 4.0
+sources:
+- <b>市场与产品数据</b>：Sensor Tower（games_breakdown 品类大盘 + unified sales_report_estimates
+  单品实测）
+- <b>留存（D7）</b>：Sensor Tower 暂无公开 API 直拉；缺失时在报告中显示「无相关数据」，不参与评分
+- <b>受众重叠</b>：Sensor Tower 跨应用使用数据（需对应模块权限）；缺失时显示「无相关数据」
+- <b>种子产品清单</b>：人工圈定 + 复核，是本方法论的关键人工环节
+- <b>ROI 计算</b>：立项线索评估 v3.1.4 公式，由 src/scorecard.py 脚本执行

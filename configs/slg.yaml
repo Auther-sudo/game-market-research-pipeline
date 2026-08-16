@@ -1,0 +1,231 @@
+# ============================================================
+# SLG 玩法融合立项机会研究 —— 配置文件
+#
+# 换研究对象时，只需复制这份文件改 meta + fusions 两段。
+# 种子产品清单是全部实测数据的入口，必须人工复核。
+# ============================================================
+
+meta:
+  core_genre: SLG
+  core_genre_desc: 策略战争，以 COK-like / 4X 为主战场
+  report_title: 【SLG】玩法融合立项机会全景研究
+  author: 战略 x AI
+
+st:
+  # 数据源：仅 Sensor Tower API（需配置 SENSORTOWER_AUTH_TOKEN）。无 token 时工具直接拒绝生成，不降级到示例/手工数据。
+
+  markets:
+    CN: [CN]
+    GL: [US, JP, KR, DE, GB]
+
+  date_from: '2025-07-01'
+  date_to: '2026-06-30'
+
+  # 品类天花板用 games_breakdown 抓取，category id 默认 7001(Games 顶层，作 TAM 代理)。
+  # 若你有更精确的「SLG / 某子品类」category id，填这里可让「空间」维度更准。
+  games_category_id: 7017
+
+  # 留存 D7 / 受众重叠暂无 API 来源：缺失时报告显示「无相关数据」、不参与评分，
+  # 不再编造兜底估值。接入真实数据（ST 网页端导出 CSV 或对应模块）后自动覆盖。
+
+  # 核心玩法在 ST 里的锚点。先跑 python src/run.py --discover 确认账号里的真实字段名与取值
+  core_filter:
+    field: Game Sub-genre
+    values: [4X Strategy, Build & Battle]
+
+# 核心玩法基本盘。数值填 ST 实测，留空则显示待填
+core_market:
+  kpis:
+    - value: 待填
+      label: SLG 全球年收入（ST games_breakdown）
+    - value: 待填
+      label: 同比增速
+    - value: 待填
+      label: 头部产品 RPD 区间
+  notes: >
+    这一节用于交代核心玩法自身的市场体量与结构，是所有融合方向的分母。
+    建议用 ST 的 games_breakdown 端点按 4X Strategy / Build & Battle 子品类取市场总量，
+    不要用 Top-N 榜单加总代替。
+
+# ============================================================
+# 融合候选清单
+#   fusion_role : 副玩法 / 外壳 / 核心替换 / 养成层 —— 决定融合方式，也影响方案卡叙述
+#   st_subgenre : 该玩法在 ST 里的子品类名，用于取品类大盘（空间维度上限）
+#   seeds       : 已上线的「核心玩法 × 该玩法」代表产品。这是种子产品法的入口
+#   hypothesis  : 立项假设，会喂给叙事层
+#   risk_base   : 配置层基础风险（%），用于承载数据抓不到的定性判断
+# ============================================================
+fusions:
+
+  - id: minigame
+    name: 闯关小游戏
+    fusion_role: 副玩法
+    st_subgenre: Puzzle
+    category_id: 7012
+    seeds:
+      - name: 'Last War: Survival'
+      - name: Kingshot
+    hypothesis: 用超休闲闯关关卡做买量素材与新手前置，把 SLG 的高门槛认知成本压到最低。
+    risk_base: 0
+
+  - id: merge
+    name: 二合
+    fusion_role: 副玩法
+    st_subgenre: Merge
+    category_id: 7012
+    seeds:
+      - name: 'Top War: Battle Game'
+      - name: 'Last War: Survival'
+    hypothesis: 合并作为部队/道具的成长表达，把 SLG 的数值养成可视化成可拖拽的即时反馈。
+    risk_base: 0
+
+  - id: match3
+    name: 三消
+    fusion_role: 副玩法
+    st_subgenre: Match 3
+    category_id: 7012
+    seeds:
+      - name: 'Puzzles & Survival'
+      - name: Age of Origins
+    hypothesis: 三消作为独立副玩法承接泛用户，主线仍是 SLG，两套循环用资源产出打通。
+    risk_base: 0
+
+  - id: simulation
+    name: 模拟经营
+    fusion_role: 外壳
+    st_subgenre: Simulation
+    category_id: 7015
+    seeds:
+      - name: Whiteout Survival
+    hypothesis: 用基建/家园经营替换传统领地建造，把 SLG 前中期的空窗期填成有情感的养成。
+    risk_base: 0
+
+  - id: herorpg
+    name: 卡牌英雄养成
+    fusion_role: 养成层
+    st_subgenre: RPG
+    category_id: 7014
+    seeds:
+      - name: 'Rise of Kingdoms'
+      - name: Top Heroes
+    hypothesis: 英雄卡池作为付费深度层，与 SLG 的部队体系并行，解决纯数值付费天花板。
+    risk_base: 0
+
+  - id: towerdefense
+    name: 塔防
+    fusion_role: 副玩法
+    st_subgenre: Tower Defense
+    category_id: 7017
+    seeds: []
+    hypothesis: 塔防作为守城战的具象化表达，把 SLG 里抽象的防守数值变成可操作的关卡。
+    risk_base: 5
+
+  - id: palworld
+    name: 帕鲁like 捉宠共生
+    fusion_role: 养成层
+    st_subgenre: Adventure
+    category_id: 7002
+    seeds: []
+    hypothesis: 可捕获生物同时充当战斗单位与生产力，为 SLG 提供收集养成与情感陪伴双线。
+    risk_base: 10
+
+  - id: idle
+    name: 放置挂机
+    fusion_role: 外壳
+    st_subgenre: Idle
+    category_id: 7015
+    seeds:
+      - name: Top Heroes
+    hypothesis: 离线收益天然匹配 SLG 的长周期节奏，降低在线时长压力、扩大轻度受众。
+    risk_base: 0
+
+  - id: roguelike
+    name: Roguelike
+    fusion_role: 副玩法
+    st_subgenre: Roguelike
+    category_id: 7001
+    seeds: []
+    hypothesis: 随机构筑关卡作为赛季内的重复消费内容，解决 SLG 中后期日常同质化。
+    risk_base: 8
+
+  - id: survivorlike
+    name: 割草生存
+    fusion_role: 副玩法
+    st_subgenre: Action
+    category_id: 7001
+    seeds: []
+    hypothesis: 割草作为高转化买量素材与碎片化战斗出口，承接 SLG 素材疲劳后的新钩子。
+    risk_base: 5
+
+  - id: autochess
+    name: 自走棋
+    fusion_role: 副玩法
+    st_subgenre: Strategy
+    category_id: 7017
+    seeds:
+      - name: 'Art of War: Legions'
+    hypothesis: 用自走棋式的阵容摆放与自动结算替换 SLG 的抽象战报，把「排兵布阵」变成可看、可复盘的策略表达。
+    risk_base: 5
+
+  - id: srpg
+    name: 战棋
+    fusion_role: 副玩法
+    st_subgenre: Strategy
+    category_id: 7017
+    seeds: []
+    hypothesis: 格子战棋作为攻城/剧情关的高策略密度出口，服务 SLG 里最硬核的那批策略玩家，提升赛季内容耐玩度。
+    risk_base: 8
+
+  - id: card
+    name: 卡牌对战
+    fusion_role: 养成层
+    st_subgenre: Card
+    category_id: 7005
+    seeds: []
+    hypothesis: 用卡组构筑替代纯数值堆叠，让战前决策与赛季平衡有抓手，同时把付费从数值转向卡池与皮肤。
+    risk_base: 8
+
+  - id: board
+    name: 桌游/Board
+    fusion_role: 外壳
+    st_subgenre: Card
+    category_id: 7005
+    seeds: []
+    hypothesis: 用掷骰/走格的桌游外壳包装资源产出与领地争夺，把 SLG 的长线目标压缩成一局几分钟的轻社交博弈。
+    risk_base: 10
+
+  - id: openworld
+    name: 开放世界
+    fusion_role: 核心替换
+    st_subgenre: Adventure
+    category_id: 7002
+    seeds: []
+    hypothesis: 用可自由探索的连续大地图替换 SLG 的格子大地图，把行军等待变成有内容可玩的探索过程，冲击更高的品质天花板。
+    risk_base: 15
+
+# ============================================================
+# 评分锚点。默认值在 scorecard.py 的 DEFAULT_SCORING，这里只覆盖需要调的
+# 建议做法：先用默认跑一轮，看分布是否过于集中，再回来调分档阈值
+# ============================================================
+scoring:
+  payment:
+    metric: seed_rpd
+    anchors: [[0.5, 2], [2.0, 4], [6.0, 6], [15.0, 8], [40.0, 10]]
+
+risk:
+  no_seed_penalty: 12
+  low_overlap_threshold: 0.25
+  low_overlap_penalty: 10
+  max_risk: 30
+
+priority:
+  P1: 7.5
+  P2: 6.0
+  P3: 4.0
+
+sources:
+  - <b>市场与产品数据</b>：Sensor Tower（games_breakdown 品类大盘 + unified sales_report_estimates 单品实测）
+  - <b>留存（D7）</b>：Sensor Tower 暂无公开 API 直拉；缺失时在报告中显示「无相关数据」，不参与评分
+  - <b>受众重叠</b>：Sensor Tower 跨应用使用数据（需对应模块权限）；缺失时显示「无相关数据」
+  - <b>种子产品清单</b>：人工圈定 + 复核，是本方法论的关键人工环节
+  - <b>ROI 计算</b>：立项线索评估 v3.1.4 公式，由 src/scorecard.py 脚本执行

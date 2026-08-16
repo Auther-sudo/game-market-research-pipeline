@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ meta.report_title }}</title>
+<style>
+:root{
+  --bg:#0f1218; --bg2:#161b24; --card:#1c2330; --card2:#232c3c;
+  --line:#2c3648; --txt:#e8ecf1; --txt2:#9aa5b1;
+  --mint:#7ec8a9; --pink:#f4b8c1; --gold:#f7d794; --blue:#8ecae6; --purple:#c3aed6;
+  --green:#2d6a4f; --yellow:#7a5c1e; --gray:#3a4150;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.75}
+.layout{display:flex;min-height:100vh}
+nav{position:fixed;left:0;top:0;bottom:0;width:250px;background:var(--bg2);border-right:1px solid var(--line);padding:24px 16px;overflow-y:auto;font-size:12.5px}
+nav h2{font-size:14px;color:var(--mint);margin-bottom:14px;letter-spacing:1px}
+nav a{display:block;color:var(--txt2);text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:7px;margin-bottom:2px}
+nav a:hover{background:var(--card);color:var(--mint)}
+nav a.l2{padding-left:24px;font-size:12px}
+nav a.l3{padding-left:36px;font-size:11.5px;color:var(--txt2)}
+main{margin-left:250px;flex:1;padding:48px 56px;max-width:1160px}
+.hero{background:linear-gradient(135deg,#17352b 0%,#1c2330 55%,#2b2333 100%);border:1px solid var(--line);border-radius:18px;padding:40px 44px;margin-bottom:32px}
+.hero .tag{display:inline-block;background:rgba(126,200,169,.15);color:var(--mint);border:1px solid rgba(126,200,169,.4);font-size:12px;padding:3px 12px;border-radius:99px;margin-bottom:12px}
+.hero h1{font-size:28px;line-height:1.4;margin-bottom:10px}
+.hero .sub{color:var(--txt2);font-size:14px}
+.hero .sig{margin-top:18px;color:var(--gold);font-size:13px;letter-spacing:1px}
+h2.sec{font-size:21px;margin:44px 0 6px;padding-left:14px;border-left:4px solid var(--mint)}
+h3{font-size:16px;margin:28px 0 8px;color:var(--blue)}
+h4{font-size:14.5px;margin:18px 0 6px;color:var(--pink)}
+p{margin:8px 0}
+.muted{color:var(--txt2);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:14px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;background:var(--card);border-radius:10px;overflow:hidden}
+th{background:var(--card2);color:var(--mint);text-align:left;padding:9px 10px;font-weight:600;white-space:nowrap}
+td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top}
+tr:hover td{background:rgba(126,200,169,.04)}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.kpi .num{font-size:24px;font-weight:700;color:var(--mint)}
+.kpi .lbl{font-size:12px;color:var(--txt2);margin-top:3px}
+.pill{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:99px;margin-right:5px}
+.pill.g{background:rgba(126,200,169,.16);color:var(--mint)}
+.pill.y{background:rgba(247,215,148,.16);color:var(--gold)}
+.pill.r{background:rgba(244,184,193,.16);color:var(--pink)}
+.pill.b{background:rgba(142,202,230,.16);color:var(--blue)}
+.pill.p{background:rgba(167,139,250,.18);color:#a78bfa}
+.callout{border-left:3px solid var(--gold);background:rgba(247,215,148,.06);padding:12px 16px;border-radius:0 10px 10px 0;margin:12px 0;font-size:13.5px}
+.callout.mint{border-color:var(--mint);background:rgba(126,200,169,.06)}
+.callout.pink{border-color:var(--pink);background:rgba(244,184,193,.06)}
+.cell-g{background:rgba(45,106,79,.5)!important}
+.cell-y{background:rgba(122,92,30,.42)!important}
+.cell-x{background:rgba(58,65,80,.45)!important;color:#8a93a3!important}
+.score-big{font-size:30px;font-weight:800;color:var(--gold)}
+.bar{height:7px;border-radius:99px;background:var(--gray);overflow:hidden;margin-top:5px}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--mint),var(--blue))}
+footer{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);color:var(--txt2);font-size:12px}
+ul,ol{padding-left:20px;margin:6px 0}
+li{margin:4px 0}
+.hl{color:var(--mint);font-weight:600}
+.hlg{color:var(--gold);font-weight:600}
+.hlp{color:var(--pink);font-weight:600}
+.plan-box{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:0 12px 12px 0;padding:18px 22px;margin:16px 0}
+.plan-box.p2{border-left-color:var(--mint)}
+.plan-box.p3{border-left-color:var(--gold)}
+.plan-box.p4{border-left-color:var(--gray)}
+.plan-box h3{margin-top:0}
+.est{color:var(--gold);font-size:11px;opacity:.85}
+.src{color:var(--txt2);font-size:11px}
+
+/* ── 标杆竞品扫描：仅保留 现状/成功逻辑/可结合玩法 三行分析 ── */
+.subhead{display:flex;align-items:center;gap:10px;margin:20px 0 10px}
+.subhead .t{font-size:14.5px;color:var(--pink);font-weight:600}
+.subhead .n{font-size:11.5px;color:var(--txt2);background:var(--card2);border:1px solid var(--line);padding:2px 9px;border-radius:99px}
+.subhead .line{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.analysis{display:grid;gap:8px;margin-top:10px}
+.arow{display:flex;gap:10px;background:rgba(126,200,169,.05);border-left:2px solid rgba(126,200,169,.45);
+      border-radius:0 9px 9px 0;padding:9px 13px;font-size:13.5px;line-height:1.7}
+.arow .k{flex:none;color:var(--mint);font-weight:600;min-width:60px}
+.arow.b{background:rgba(142,202,230,.05);border-left-color:rgba(142,202,230,.5)}
+.arow.b .k{color:var(--blue)}
+.arow.p{background:rgba(167,139,250,.06);border-left-color:rgba(167,139,250,.5)}
+.arow.p .k{color:#a78bfa}
+
+/* ── 可融合的非SLG游戏：与竞品同款卡片（不含「可结合玩法」）── */
+.rgcards{display:grid;gap:12px;margin:10px 0 6px}
+.rgcard{background:var(--card2);border:1px solid var(--line);border-left:3px solid var(--purple);
+        border-radius:0 13px 13px 0;padding:14px 18px;
+        transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s ease}
+.rgcard:hover{transform:translateX(3px);border-color:rgba(195,174,214,.5);border-left-color:var(--pink)}
+.rgcard .gname{display:flex;align-items:baseline;gap:8px;font-size:14px;font-weight:700;margin-bottom:8px}
+.rgcard .gname .idx{flex:none;font-size:10.5px;color:var(--purple);background:rgba(195,174,214,.14);
+                    border:1px solid rgba(195,174,214,.3);border-radius:6px;padding:1px 7px}
+.rgcard .gname .cat{flex:none;font-size:10.5px;color:var(--txt2);font-weight:400}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <h2>{{ meta.core_genre }} 融合全景</h2>
+  <a href="#conclusion">核心结论</a>
+  <a href="#method">Phase 0 方法论</a>
+  <a href="#market">一、核心玩法基本盘</a>
+  <a href="#candidates">二、融合候选与种子产品</a>
+  <a href="#dims">三、五维评分明细</a>
+  <a href="#matrix">四、融合矩阵</a>
+  <a href="#roi">五、ROI 评分卡</a>
+  <a href="#plans">六、{{ plans_results|length }}方向方案（15 候选取优）</a>
+  {%- for r in plans_results %}
+  <a class="l3" href="#p{{ loop.index }}">{{ loop.index }}.{{ r.fusion_name }} {{ "%.2f"|format(r.combined_roi) }}</a>
+  {%- endfor %}
+  <a href="#opportunities">七、寻找新机会</a>
+  <a href="#appendix">数据来源与审计</a>
+</nav>
+<main>
+
+<div class="hero">
+  <div class="tag">{{ meta.methodology }} · 数据源 {{ meta.data_source }} · {{ results|length }}方向完整报告</div>
+  <h1>{{ meta.report_title }}</h1>
+  <div class="sub">核心玩法：<b>{{ meta.core_genre }}</b>（{{ meta.core_genre_desc }}）｜ 候选融合玩法 {{ results|length }} 个 ｜ 市场：{{ meta.markets|join(' / ') }}<br>覆盖：核心盘数据 / 种子产品实测 / 五维评分 / 融合矩阵 / ROI 排序 / 完整方案卡</div>
+  <div class="sig">作者：{{ meta.author }} ｜ 日期：{{ meta.date }}</div>
+</div>
+
+<h2 class="sec" id="conclusion">核心结论</h2>
+<div class="card">
+  <p><span class="pill g">判定</span><b>{{ summary.headline }}</b></p>
+  <div class="grid4" style="margin-top:14px">
+    <div class="kpi"><div class="num">{{ results|length }}</div><div class="lbl">融合方向（候选扫描）</div></div>
+    <div class="kpi"><div class="num">{{ summary.p2_count }}个</div><div class="lbl">P2 及以上方向（≥{{ priority.P2 }}）</div></div>
+    <div class="kpi"><div class="num">{{ "%.2f"|format(summary.top_roi) }}</div><div class="lbl">最优方向 ROI（{{ summary.top_name }}）</div></div>
+  </div>
+  <h4>{{ results|length }}方向 ROI 全景（按综合 ROI 降序）</h4>
+  <table>
+    <tr><th>#</th><th>融合方向</th><th>融合角色</th>{% for m in meta.markets %}<th>{{ m }}</th>{% endfor %}<th>综合</th><th>ASP</th><th>优先级</th></tr>
+    {%- for r in results %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td><b>{{ meta.core_genre }} × {{ r.fusion_name }}</b></td>
+      <td>{{ r.fusion_role }}</td>
+      {%- for m in meta.markets %}
+      <td>{{ "%.2f"|format(r.by_market[m].roi) if m in r.by_market else "—" }}</td>
+      {%- endfor %}
+      <td><b>{{ "%.2f"|format(r.combined_roi) }}</b></td>
+      <td>{{ "%.2f"|format(r.asp) }}</td>
+      <td><span class="pill {{ 'g' if r.priority in ['P1','P2'] else ('y' if r.priority=='P3' else 'r') }}">{{ r.priority }}</span></td>
+    </tr>
+    {%- endfor %}
+  </table>
+  <p class="muted">综合 ROI = 0.90×max(单市场) + 0.10×min(单市场)；ASP = 吸量35.7% + 空间28.6% + 付费35.7%。全部由脚本按公式计算，未经模型改写。</p>
+  {%- for c in summary.callouts %}
+  <div class="callout{{ ' mint' if loop.index0 % 2 else '' }}">{{ c|safe }}</div>
+  {%- endfor %}
+</div>
+
+<h2 class="sec" id="method">Phase 0 ｜ 方法论：种子产品法</h2>
+<div class="card">
+  <p>Sensor Tower 的分类体系是<b>单标签</b>（Primary Genre + Sub-genre），系统里不存在「{{ meta.core_genre }} × 三消」这样的组合品类，直接查询拿不到融合玩法的市场数据。本报告采用<b>种子产品法</b>破解：</p>
+  <table>
+    <tr><th>步骤</th><th>做法</th><th>产出</th></tr>
+    <tr><td>① 圈定种子</td><td>为每个融合组合列出已上线的代表产品（含该玩法元素的 {{ meta.core_genre }} 产品）</td><td>组合 → 产品清单</td></tr>
+    <tr><td>② 实测聚合</td><td>用 ST 拉种子产品的下载/收入/留存/RPD，聚合成"组合大盘"</td><td>组合的真实表现</td></tr>
+    <tr><td>③ 上限锚定</td><td>用 ST 品类大盘（games_breakdown）取该融合玩法自身的市场天花板</td><td>空间维度上限</td></tr>
+    <tr><td>④ 空白识别</td><td>找不到种子产品的格子 = 无验证案例，进入蓝海/伪需求人工判定</td><td>风险加罚 + 标注</td></tr>
+  </table>
+  <div class="callout"><b>为什么不用 Top-N 榜单加总来做大盘？</b>榜单是"标题集合"而非"市场总量"，会随榜单截断和选样漂移。品类总量必须走 games_breakdown 聚合端点，这是 ST 官方口径。</div>
+  <h4>五维权重与公式</h4>
+  <table>
+    <tr><th>维度</th><th>权重</th><th>数据锚点</th><th>映射方式</th></tr>
+    {%- for d in dim_specs %}
+    <tr><td><b>{{ d.label }}</b></td><td>{{ d.weight }}</td><td>{{ d.metric }}</td><td>{{ d.mapping }}</td></tr>
+    {%- endfor %}
+  </table>
+  <p class="muted">原始 ROI =Σ(维度×权重)×(1−风险/100)；显示 ROI = clamp(1,10, 5.5+(原始−5.5)×2.0)。风险来自：无验证案例、受众重叠不足、配置基础风险。</p>
+</div>
+
+<h2 class="sec" id="market">一、{{ meta.core_genre }} 核心玩法基本盘</h2>
+<div class="grid3">
+  {%- for k in core_kpis %}
+  <div class="kpi"><div class="num">{{ k.value }}</div><div class="lbl">{{ k.label }}</div></div>
+  {%- endfor %}
+</div>
+{%- if core_notes %}
+<div class="card"><p>{{ core_notes|safe }}</p></div>
+{%- endif %}
+
+<h2 class="sec" id="candidates">二、融合候选与种子产品</h2>
+<div class="card">
+  <p>共扫描 {{ results|length }} 个融合玩法候选。<b>种子产品是全部实测数据的来源</b>，清单需人工复核——这一步的准确性直接决定报告可信度。</p>
+  <table>
+    <tr><th>融合玩法</th><th>融合角色</th><th>ST 子品类锚点</th><th>种子产品</th></tr>
+    {%- for r in results %}
+    <tr>
+      <td><b>{{ r.fusion_name }}</b></td>
+      <td>{{ r.fusion_role }}</td>
+      <td>{{ fusion_meta[r.fusion_id].st_subgenre or '—' }}</td>
+      <td>{% set fm = fusion_meta[r.fusion_id] %}{% set bk_n = (benchmarks.get(r.fusion_id) or [])|length %}{% if fm.get('_benchmark_seeded') %}同类标杆 {{ fm.seeds|length }} 款（无直接组合案例）{% elif fm.seeds %}{{ fm.seeds|map(attribute='name')|join('／') }}{% elif bk_n > 0 %}同类标杆 {{ bk_n }} 款（无直接组合案例）{% else %}<span class="est">无已上线案例</span>{% endif %}</td>
+    </tr>
+    {%- endfor %}
+  </table>
+</div>
+
+<h2 class="sec" id="dims">三、五维评分明细</h2>
+{%- for m in meta.markets %}
+<h3>{{ m }} 市场</h3>
+<table style="font-size:12.5px">
+  <tr><th>融合方向</th>{% for d in dim_specs %}<th>{{ d.label }}</th>{% endfor %}<th>风险</th><th>ROI</th></tr>
+  {%- for r in results %}{% if m in r.by_market %}{% set fs = r.by_market[m] %}
+  <tr>
+    <td><b>{{ r.fusion_name }}</b></td>
+    {%- for d in dim_specs %}
+    {%- set ds = fs.dims[d.key] %}
+    <td title="{{ ds.basis }}">{% if ds.score is none %}<span class="est">无相关数据</span>{% else %}{{ "%.1f"|format(ds.score) }}{% endif %}</td>
+    {%- endfor %}
+    <td>{{ fs.risk|round(0)|int }}%</td>
+    <td><b>{{ "%.2f"|format(fs.roi) }}</b></td>
+  </tr>
+  {%- endif %}{% endfor %}
+</table>
+{%- endfor %}
+<p class="muted">若某维度显示「无相关数据」，表示该指标在当前数据源中缺失（如留存 D7 需 ST aggregate_tags 支持、受众重叠暂无 API 来源），不参与该方向评分，结论应结合其余维度谨慎看待。鼠标悬停单元格可看计算依据。</p>
+
+<h2 class="sec" id="matrix">四、融合矩阵</h2>
+<table style="font-size:12px">
+  <tr><th>融合玩法＼评估</th><th>市场验证</th><th>受众契合</th><th>竞争格局</th><th>付费适配</th><th>判定</th></tr>
+  {%- for r in results %}
+  <tr>
+    <td><b>{{ r.fusion_name }}</b></td>
+    {%- for cell in matrix[r.fusion_id] %}
+    <td class="cell-{{ cell.tone }}">{{ cell.text }}</td>
+    {%- endfor %}
+    <td class="cell-{{ 'g' if r.priority in ['P1','P2'] else ('y' if r.priority=='P3' else 'x') }}"><b>{{ r.priority }}</b></td>
+  </tr>
+  {%- endfor %}
+</table>
+<p class="muted">绿=优（有验证且指标强）｜黄=次优（有信号但存疑）｜灰=弱（无案例或指标差）。判定列即 ROI 优先级。</p>
+
+<h2 class="sec" id="roi">五、ROI 评分卡</h2>
+<div class="callout mint"><b>评估说明：</b>全部由 <code>scorecard.py</code> 按立项线索评估 v3.1.4 公式计算。指标 → 分数走绝对分档（对数插值），不做主观打分；缺失指标显式兜底并标记。模型只参与方案卡文案生成，不参与任何数字计算。</div>
+<table style="font-size:12.5px">
+  <tr><th>#</th><th>融合方向</th>{% for m in meta.markets %}<th>{{ m }}</th>{% endfor %}<th>综合</th><th>ASP</th><th>优先</th><th>强侧</th><th>关键风险</th></tr>
+  {%- for r in results %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td><b>{{ meta.core_genre }} × {{ r.fusion_name }}</b></td>
+    {%- for m in meta.markets %}
+    <td>{{ "%.2f"|format(r.by_market[m].roi) if m in r.by_market else "—" }}</td>
+    {%- endfor %}
+    <td><b>{{ "%.2f"|format(r.combined_roi) }}</b></td>
+    <td>{{ "%.2f"|format(r.asp) }}</td>
+    <td><span class="pill {{ 'g' if r.priority in ['P1','P2'] else ('y' if r.priority=='P3' else 'r') }}">{{ r.priority }}</span></td>
+    <td>{{ r.strong_side }}</td>
+    <td class="muted">{{ r.by_market[r.strong_side].risk_reasons|join('；') or '无显著风险项' }}</td>
+  </tr>
+  {%- endfor %}
+</table>
+
+<h2 class="sec" id="plans">六、{{ plans_results|length }}方向完整方案（15 候选取数据最优 10 个）</h2>
+<div class="card">
+  <p>按综合 ROI 降序排列，每个方案由 <b>①概念 → ⑦概念图</b> 七段设计说明打底，再附两组「看真实产品」的卡片：</p>
+  <ul>
+    <li><b>⑧ 可融合的非SLG游戏</b>：该融合方向对应品类里的真实非SLG产品，每款单独给出 <span class="hlp">玩法介绍 / 吸量亮点 / 现状</span>——用于回答「这个玩法本身好在哪、凭什么抓量」。</li>
+    <li><b>⑨ 标杆竞品扫描</b>：用 Sensor Tower 搜索该方向真实游戏并拉取收入 / 下载 / RPD，再分析 <span class="hl">现状 / 成功逻辑 / 可结合玩法</span>——用于回答「这条赛道现在谁在赚钱、我们能借什么」。</li>
+  </ul>
+  <p class="muted">方案文案由 AI 基于本报告的实测数据撰写，<b>数字部分全部来自上方评分卡与 ST 实测，未经模型改写</b>。</p>
+</div>
+
+{%- for r in plans_results %}
+{%- set plan = plans[r.fusion_id] %}
+<div class="plan-box {{ 'p2' if r.priority in ['P1','P2'] else ('p3' if r.priority=='P3' else 'p4') }}" id="p{{ loop.index }}">
+<h3>方案{{ loop.index }}：{{ meta.core_genre }} × {{ r.fusion_name }} <span class="pill {{ 'g' if r.priority in ['P1','P2'] else 'y' }}">{{ r.priority }} {{ "%.2f"|format(r.combined_roi) }}</span> {% for m in meta.markets %}{{ m }}{{ "%.2f"|format(r.by_market[m].roi) }}{% if not loop.last %}/{% endif %}{% endfor %} | {{ r.fusion_role }}</h3>
+<p><b>①概念：</b>{{ plan.concept }}</p>
+<p><b>②适配：</b>{{ plan.fit }}</p>
+<p><b>③吸量点：</b>{{ plan.acquisition }}</p>
+<p><b>④留存：</b>{{ plan.retention }}</p>
+<p><b>⑤付费：</b>{{ plan.monetization }}</p>
+<p><b>⑥美术：</b>{{ plan.art }}</p>
+<p><b>⑦概念图：</b>{{ plan.concept_art }}</p>
+<p class="src">数据依据：{% for m in meta.markets %}{{ m }} {{ r.market_dim_basis[m] }}　{% endfor %}</p>
+
+<div class="subhead"><span class="t">⑧ 可融合的非SLG游戏</span><span class="n">{{ r.fusion_name }} 类{% if plan.ref_games is not string and plan.ref_games %} · {{ plan.ref_games|length }} 款{% endif %}</span><span class="line"></span></div>
+{%- if plan.ref_games is string %}
+<p>{{ plan.ref_games }}</p>
+{%- elif plan.ref_games %}
+<div class="rgcards">
+  {%- for g in plan.ref_games %}
+  <div class="rgcard">
+    <div class="gname"><span class="idx">{{ "%02d"|format(loop.index) }}</span>{{ g.name }}<span class="cat">{{ r.fusion_name }} 类</span></div>
+    <div class="analysis">
+      <div class="arow p"><span class="k">玩法介绍</span><span>{{ g.gameplay or '—' }}</span></div>
+      <div class="arow b"><span class="k">吸量亮点</span><span>{{ g.hook or '—' }}</span></div>
+      <div class="arow"><span class="k">现状</span><span>{{ g.status or '—' }}</span></div>
+    </div>
+  </div>
+  {%- endfor %}
+</div>
+{%- else %}
+<p class="src"><span class="est">待补充：{{ r.fusion_name }} 类非SLG游戏清单（需 AI 撰写方案卡或配置 LLM_API_KEY）。</span></p>
+{%- endif %}
+
+{%- set bk = benchmarks.get(r.fusion_id) if benchmarks else none %}
+{%- if bk %}
+<div class="subhead"><span class="t">⑨ 标杆竞品扫描</span><span class="n">Sensor Tower 实测 · {{ bk|length }} 款标杆 · 现状/成功逻辑/可结合玩法</span><span class="line"></span></div>
+<div class="analysis">
+  <div class="arow"><span class="k">现状</span><span>{{ plan.status or '—' }}</span></div>
+  <div class="arow b"><span class="k">成功逻辑</span><span>{{ plan.success_logic or '—' }}</span></div>
+  <div class="arow p"><span class="k">可结合玩法</span><span>{{ plan.ref_mechanics or '—' }}</span></div>
+</div>
+{%- else %}
+<div class="subhead"><span class="t">⑨ 标杆竞品扫描</span><span class="n">无标杆数据</span><span class="line"></span></div>
+<p class="src">目前没有竞品（Sensor Tower 未检索到该方向的真实游戏，不编造）。</p>
+{%- endif %}
+</div>
+{%- endfor %}
+
+<h2 class="sec" id="opportunities">七、寻找新机会</h2>
+<div class="card">
+  <p>基于上方五维评分与 ROI，自动从 {{ results|length }} 个方向中筛选出三类值得优先关注的机会。规则透明、可复现，且<b>不引入新假设</b>：</p>
+  <ul>
+    <li><b>蓝海方向</b>：空间维度高、竞争维度低（市场大且尚未拥挤），按 <code>空间−竞争</code> 降序取前 5。</li>
+    <li><b>高潜力黑马</b>：综合 ROI 处于前列、但种子产品覆盖低（尚未被充分验证、易被低估），按 ROI 降序取前 5。</li>
+    <li><b>空白赛道</b>：空间天花板可观（≥5）且竞争极低（≤4），核心玩法几乎未渗透的相邻品类，按空间降序取前 5。</li>
+  </ul>
+  <p class="muted">所需维度缺失的方向不参与对应榜单（避免编造）。若某榜单为空，说明当前数据不足以判定该类机会，应在补数据后重看。</p>
+</div>
+
+{%- if opportunities.available %}
+  <h3>① 蓝海方向（市场大 · 竞争弱）</h3>
+  {%- if opportunities.blue_ocean %}
+  <table>
+    <tr><th>融合方向</th><th>空间</th><th>竞争</th><th>ROI</th><th>优先级</th><th>机会信号</th></tr>
+    {%- for i in opportunities.blue_ocean %}
+    <tr>
+      <td><b>{{ meta.core_genre }} × {{ i.name }}</b></td>
+      <td>{{ "%.1f"|format(i.space) }}</td>
+      <td>{{ "%.1f"|format(i.comp) }}</td>
+      <td>{{ "%.2f"|format(i.roi) }}</td>
+      <td><span class="pill {{ 'g' if i.priority in ['P1','P2'] else ('y' if i.priority=='P3' else 'r') }}">{{ i.priority }}</span></td>
+      <td class="muted">空间−竞争={{ "%.1f"|format(i.space - i.comp) }}</td>
+    </tr>
+    {%- endfor %}
+  </table>
+  {%- else %}
+  <div class="callout"><span class="est">当前数据下空间/竞争维度不足，暂无法识别蓝海方向。</span></div>
+  {%- endif %}
+
+  <h3>② 高潜力黑马（高 ROI · 低验证）</h3>
+  {%- if opportunities.dark_horse %}
+  <table>
+    <tr><th>融合方向</th><th>ROI</th><th>优先级</th><th>机会信号</th></tr>
+    {%- for i in opportunities.dark_horse %}
+    <tr>
+      <td><b>{{ meta.core_genre }} × {{ i.name }}</b></td>
+      <td>{{ "%.2f"|format(i.roi) }}</td>
+      <td><span class="pill {{ 'g' if i.priority in ['P1','P2'] else ('y' if i.priority=='P3' else 'r') }}">{{ i.priority }}</span></td>
+      <td class="muted">高 ROI 但覆盖偏低，属被低估方向</td>
+    </tr>
+    {%- endfor %}
+  </table>
+  {%- else %}
+  <div class="callout"><span class="est">当前数据下暂无「高 ROI 且低验证」的方向。</span></div>
+  {%- endif %}
+
+  <h3>③ 空白赛道（天花板可观 · 核心玩法未渗透）</h3>
+  {%- if opportunities.whitespace %}
+  <table>
+    <tr><th>融合方向</th><th>空间</th><th>竞争</th><th>ROI</th><th>优先级</th><th>机会信号</th></tr>
+    {%- for i in opportunities.whitespace %}
+    <tr>
+      <td><b>{{ meta.core_genre }} × {{ i.name }}</b></td>
+      <td>{{ "%.1f"|format(i.space) }}</td>
+      <td>{{ "%.1f"|format(i.comp) }}</td>
+      <td>{{ "%.2f"|format(i.roi) }}</td>
+      <td><span class="pill {{ 'g' if i.priority in ['P1','P2'] else ('y' if i.priority=='P3' else 'r') }}">{{ i.priority }}</span></td>
+      <td class="muted">空间≥5 且竞争≤4</td>
+    </tr>
+    {%- endfor %}
+  </table>
+  {%- else %}
+  <div class="callout"><span class="est">当前数据下暂无「空间可观且竞争极低」的空白赛道。</span></div>
+  {%- endif %}
+{%- else %}
+<div class="callout"><span class="est">无可用评分数据，无法生成机会清单。</span></div>
+{%- endif %}
+
+<h2 class="sec" id="appendix">数据来源与审计</h2>
+<div class="card">
+  <h4>数据来源</h4>
+  <ul>
+    {%- for s in sources %}
+    <li>{{ s|safe }}</li>
+    {%- endfor %}
+  </ul>
+  <h4>审计报告</h4>
+  <table>
+    <tr><th>检查项</th><th>结果</th></tr>
+    {%- for c in audit.checks %}
+    <tr><td>{{ c.item }}</td><td><span class="pill {{ 'g' if c.status=='PASS' else ('y' if c.status=='WARN' else ('b' if c.status=='INFO' else 'r')) }}">{{ c.status }}</span></td></tr>
+    {%- endfor %}
+  </table>
+  <h4>数据来源分布</h4>
+  <table>
+    <tr><th>来源</th><th>指标数</th><th>说明</th></tr>
+    {%- for p in provenance_stats %}
+    <tr><td>{{ p.label }}</td><td>{{ p.count }}</td><td class="muted">{{ p.note }}</td></tr>
+    {%- endfor %}
+  </table>
+  <h4>复现方式</h4>
+  <p class="muted">在工程根目录执行 <code>python src/run.py --config {{ meta.config_file }}</code> 即可复现本报告。原始 API 响应缓存在 <code>data/cache/</code>，改配置重跑不会重复消耗 ST 配额。</p>
+</div>
+
+<footer>
+  <p>{{ meta.report_title }} ｜ 作者：{{ meta.author }} ｜ 日期：{{ meta.date }} ｜ 方法论：{{ meta.methodology }}（种子产品法）｜ 数据源：{{ meta.data_source }} ｜ 生成器：genre-fusion-research</p>
+</footer>
+
+</main>
+</div>
+</body>
+</html>
