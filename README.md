@@ -1,6 +1,5 @@
 # 游戏市场前景调研流水线
 
-![Type](https://img.shields.io/badge/Type-Interview%20Portfolio-9cf)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python&logoColor=white)
 ![Data](https://img.shields.io/badge/Data-Sensor%20Tower%20API-green)
 ![Privacy](https://img.shields.io/badge/Data-No%E7%A4%BA%E4%BE%8B%E5%86%92%E5%85%85-red)
@@ -17,7 +16,7 @@
 
 ---
 
-## 🌟 作品集亮点（面试用）
+## 🌟 核心亮点
 
 - **真实数据优先**：核心打分永远来自 Sensor Tower 实测，AI 只写文字、改不了分数，不会出现「AI 编数据」污染结论。
 - **可复现的调研流水线**：采集 → 五维打分（吸量 / 空间 / 竞争 / 留存 / 付费）+ ROI 排序 → 方案卡 → 可交互 HTML 报告，一条命令跑通。
